@@ -40,6 +40,17 @@ models:
     # Applies to all files under models/example/
     stage:
       +database: DEV_DWH
+      +schema: dev_stage
       +materialized: view
+
+    integration:
+      +database: DEV_DWH
+      +schema: dev_stage
+      +materialized: view
+
+    load:
+      +database: Dev_DWH
+      +schema: dev_target
+      +materialized: table
 
     
