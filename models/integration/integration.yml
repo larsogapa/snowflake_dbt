@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_customer_dim
+    description: customer
+  - name: int_orders_fact
+    description: orders
+  - name: int_part_dim
+    description: part
+  - name: int_supplier_dim
+    description: supplier
+    

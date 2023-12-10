@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: customer_dim
+    description: customer dimension table 
+  - name: part_dim
+    description: part dimension table
+  - name: supplier_dim
+    description: supplier dimension table 
+  - name: orders_fact
+    description: orders fact table 
