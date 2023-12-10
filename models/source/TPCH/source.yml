@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: TPCH
+    description: Esta es la referencia a la base de datos de prueba 
+    schema: TPCH_SF1
+    tables:
+      - name: CUSTOMER
+        description: table de clientes
+        meta: 
+           owner: 'carlos'
+      - name: LINEITEM
+        description: tabla de base de datos
+        meta:
+          owner: 'Carlos'
+      - name: NATION
+        description: tabla de catalogo de naciones 
+        meta:
+          owner: 'Carlos'
+      - name: ORDERS
+        description: tabla de ordenes 
+        meta:
+          owner: 'Carlos'
+      - name: PART
+        description: tabla de Partes
+      - name: PARTSUPP
+        description: PARTSUPP
+      - name: REGION
+        description: Region
+      - name: SUPPLIER
+        description: Supplier
+
+
+
