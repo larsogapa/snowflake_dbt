@@ -2,8 +2,21 @@ version: 2
 
 sources:
   - name: TPCH
-    description: Esta es la referencia a la base de datos de prueba 
-    schema: TPCH_SF1
+    description: base de datos de snowflake
+    database: |
+      {%- if target.name == "default" -%} SNOWFLAKE_SAMPLE_DATA
+      {%- elif target.name == "dev" -%} SNOWFLAKE_SAMPLE_DATA
+      {%- elif target.name == "qa" -%} SNOWFLAKE_SAMPLE_DATA
+      {%- elif target.name == "prod" -%} SNOWFLAKE_SAMPLE_DATA
+      {%- else -%} invalid_database
+      {%- endif -%}
+    schema: |
+      {%- if target.name == "default" -%} TPCH_SF1
+      {%- elif target.name == "dev" -%} TPCH_SF1
+      {%- elif target.name == "qa" -%} TPCH_SF10
+      {%- elif target.name == "prod" -%} TPCH_SF10
+      {%- else -%} invalid_database
+      {%- endif -%}
     tables:
       - name: CUSTOMER
         description: table de clientes

@@ -1,3 +1,5 @@
+{% set variable = 'variable' %}
+
 WITH  customer as (
     SELECT 
     C.C_CUSTKEY AS CUSTOMER_NK,
@@ -17,3 +19,5 @@ WITH  customer as (
 )
 
 SELECT * FROM customer
+
+{% set variable2 = 'variable2'%} 

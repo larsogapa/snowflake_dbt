@@ -6,6 +6,14 @@ name: 'my_new_project'
 version: '1.0.0'
 config-version: 2
 
+vars:
+
+  start_date: ''
+  variable_test1: ''
+  variable_test2: ''
+
+
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'default'
 
@@ -39,18 +47,72 @@ models:
   my_new_project:
     # Applies to all files under models/example/
     stage:
-      +database: DEV_DWH
-      +schema: dev_stage
-      +materialized: view
+      +database: |
+        {%- if  target.name == "default"  -%} Dev_DWH
+        {%- elif  target.name == "dev"  -%} raw_dev
+        {%- elif target.name == "qa"  -%} raw_qa
+        {%- elif target.name == "prod"  -%} raw_prod
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +schema: |
+        {%- if  target.name == "default"  -%} dev_stage
+        {%- elif  target.name == "dev"  -%} dev_stage
+        {%- elif target.name == "qa"   -%} dev_stage
+        {%- elif target.name == "prod"   -%} dev_stage
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +materialized: |
+        {%- if  target.name == "default"  -%} view
+        {%- elif  target.name == "dev"  -%} view
+        {%- elif target.name == "qa"   -%} view
+        {%- elif target.name == "prod"   -%} view
+        {%- else  -%} invalid_database
+        {%- endif  -%}
 
     integration:
-      +database: DEV_DWH
-      +schema: dev_stage
-      +materialized: view
+      +database: |
+        {%- if  target.name == "default"  -%} Dev_DWH
+        {%- elif  target.name == "dev"  -%} raw_dev
+        {%- elif target.name == "qa"   -%} raw_qa
+        {%- elif target.name == "prod"   -%} raw_prod
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +schema: |
+        {%- if  target.name == "default"  -%} dev_stage
+        {%- elif  target.name == "dev"  -%} dev_stage
+        {%- elif target.name == "qa"   -%} dev_stage
+        {%- elif target.name == "prod"   -%} dev_stage
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +materialized: |
+        {%- if  target.name == "default"  -%} view
+        {%- elif  target.name == "dev"  -%} view
+        {%- elif target.name == "qa"   -%} view
+        {%- elif target.name == "prod"   -%} view
+        {%- else  -%} invalid_database
+        {%- endif  -%}
 
     load:
-      +database: Dev_DWH
-      +schema: dev_target
-      +materialized: table
+      +database: |
+        {%- if  target.name == "default"  -%} Dev_DWH
+        {%- elif  target.name == "dev"  -%} raw_dev
+        {%- elif target.name == "qa"   -%} raw_qa
+        {%- elif target.name == "prod"   -%} raw_prod
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +schema: |
+        {%- if  target.name == "default"  -%} dev_stage
+        {%- elif  target.name == "dev"  -%} dev_stage
+        {%- elif target.name == "qa"   -%} dev_stage
+        {%- elif target.name == "prod"   -%} dev_stage
+        {%- else  -%} invalid_database
+        {%- endif  -%}
+      +materialized: |
+        {%- if  target.name == "default"  -%} view
+        {%- elif  target.name == "dev"  -%} view
+        {%- elif target.name == "qa"   -%} view
+        {%- elif target.name == "prod"   -%} view
+        {%- else  -%} invalid_database
+        {%- endif  -%}
 
     
